@@ -35,6 +35,7 @@ i3lock_LDADD = \
 	$(XCB_UTIL_XRM_LIBS) \
 	$(XKBCOMMON_LIBS) \
 	$(CAIRO_LIBS) \
+	$(XKB_LIBS) \
 	$(CODE_COVERAGE_LDFLAGS)
 
 i3lock_SOURCES = \
@@ -48,7 +49,9 @@ i3lock_SOURCES = \
 	unlock_indicator.c \
 	unlock_indicator.h \
 	xcb.c \
-	xcb.h
+	xcb.h \
+	xkb.c \
+	xkb.h
 
 EXTRA_DIST = \
 	$(pamd_files) \

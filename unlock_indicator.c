@@ -21,6 +21,7 @@
 #include "unlock_indicator.h"
 #include "randr.h"
 #include "dpi.h"
+#include "xkb.h"
 
 #define BUTTON_RADIUS 90
 #define BUTTON_SPACE (BUTTON_RADIUS + 5)
@@ -244,9 +245,22 @@ void draw_image(xcb_pixmap_t bg_pixmap, uint32_t *resolution) {
             cairo_text_extents(ctx, text, &extents);
             x = BUTTON_CENTER - ((extents.width / 2) + extents.x_bearing);
             y = BUTTON_CENTER - ((extents.height / 2) + extents.y_bearing);
-
+    
             cairo_move_to(ctx, x, y);
             cairo_show_text(ctx, text);
+            cairo_close_path(ctx);
+        } else {
+            // print the current keyboard layout if nothing else to print
+            cairo_text_extents_t extents;
+            double x, y;
+
+            cairo_text_extents(ctx, text, &extents);
+            x = BUTTON_CENTER - ((extents.width / 2) + extents.x_bearing + 15);
+            y = BUTTON_CENTER - ((extents.height / 2) + extents.y_bearing - 10);
+    
+            char* lang = get_layout();
+            cairo_move_to(ctx, x, y);
+            cairo_show_text(ctx, lang);
             cairo_close_path(ctx);
         }
 

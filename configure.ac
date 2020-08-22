@@ -97,6 +97,7 @@ PKG_CHECK_MODULES([XCB_UTIL], [xcb-event xcb-util xcb-atom])
 PKG_CHECK_MODULES([XCB_UTIL_XRM], [xcb-xrm])
 PKG_CHECK_MODULES([XKBCOMMON], [xkbcommon xkbcommon-x11])
 PKG_CHECK_MODULES([CAIRO], [cairo])
+PKG_CHECK_MODULES([XKB], [x11 xkbfile])
 
 # Checks for programs.
 AC_PROG_AWK
@@ -113,7 +114,7 @@ AX_CHECK_COMPILE_FLAG([-Wunused-value], [AX_APPEND_FLAG([-Wunused-value], [AM_CF
 AC_SUBST(AM_CFLAGS)
 
 # Checks for header files.
-AC_CHECK_HEADERS([fcntl.h float.h inttypes.h limits.h locale.h netinet/in.h paths.h stddef.h stdint.h stdlib.h string.h sys/param.h sys/socket.h sys/time.h unistd.h], , [AC_MSG_FAILURE([cannot find the $ac_header header, which i3lock requires])])
+AC_CHECK_HEADERS([fcntl.h float.h inttypes.h limits.h locale.h netinet/in.h paths.h stddef.h stdint.h stdlib.h string.h sys/param.h sys/socket.h sys/time.h unistd.h X11/XKBlib.h], , [AC_MSG_FAILURE([cannot find the $ac_header header, which i3lock requires])])
 
 AC_CONFIG_FILES([Makefile])
 
